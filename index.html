@@ -7,12 +7,14 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
             font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+            gap: 24px;
         }
         h1 {
             font-size: 40px;
@@ -22,15 +24,38 @@
             text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
             cursor: pointer;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
+            margin: 0;
         }
         h1:hover {
-            transform: scale(1.08) translateY(-5px);
+            transform: scale(1.05) translateY(-5px);
             filter: drop-shadow(4px 15px 20px rgba(0,0,0,0.3));
+        }
+        .action-btn {
+            padding: 14px 32px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            background: linear-gradient(to right, #2575fc 0%, #6a11cb 100%);
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(37, 117, 252, 0.3);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: inherit;
+        }
+        .action-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(37, 117, 252, 0.45);
+            filter: brightness(1.1);
+        }
+        .action-btn:active {
+            transform: translateY(0) scale(0.98);
         }
     </style>
 </head>
 <body>
     <h1>오늘도 힘내세요!</h1>
+    <button class="action-btn">다음 문장 보기</button>
 </body>
 </html>
