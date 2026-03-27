@@ -22,14 +22,14 @@
             color: #ffffff;
             text-align: center;
             text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             letter-spacing: -1px;
             margin: 0;
+            min-height: 1.2em;
         }
         h1:hover {
-            transform: scale(1.05) translateY(-5px);
-            filter: drop-shadow(4px 15px 20px rgba(0,0,0,0.3));
+            transform: scale(1.05);
         }
         .action-btn {
             padding: 14px 32px;
@@ -41,12 +41,11 @@
             border-radius: 50px;
             box-shadow: 0 10px 20px rgba(37, 117, 252, 0.3);
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-family: inherit;
         }
         .action-btn:hover {
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 25px rgba(37, 117, 252, 0.45);
             filter: brightness(1.1);
         }
         .action-btn:active {
@@ -55,7 +54,38 @@
     </style>
 </head>
 <body>
-    <h1>오늘도 힘내세요!</h1>
-    <button class="action-btn">다음 문장 보기</button>
+    <h1 id="main-text">오늘도 힘내세요!</h1>
+    <button id="next-btn" class="action-btn" onclick="nextMessage()">다음 문장 보기</button>
+
+    <script>
+        const messages = [
+            { text: "오늘도 힘내세요!", gradient: "linear-gradient(to right, #2575fc 0%, #6a11cb 100%)", shadow: "rgba(37, 117, 252, 0.3)" },
+            { text: "오늘도 해냈어요!", gradient: "linear-gradient(to right, #f9d423 0%, #ffdb01 100%)", shadow: "rgba(249, 212, 35, 0.4)" },
+            { text: "조금씩 나아지고 있어요", gradient: "linear-gradient(to right, #f093fb 0%, #f5576c 100%)", shadow: "rgba(245, 87, 108, 0.4)" },
+            { text: "이대로 계속 가봅시다.", gradient: "linear-gradient(to right, #00b09b 0%, #96c93d 100%)", shadow: "rgba(0, 176, 155, 0.4)" }
+        ];
+        
+        let currentIndex = 0;
+
+        function nextMessage() {
+            currentIndex = (currentIndex + 1) % messages.length;
+            const data = messages[currentIndex];
+            const textEl = document.getElementById('main-text');
+            const btnEl = document.getElementById('next-btn');
+
+            // 텍스트 애니메이션 효과와 함께 변경
+            textEl.style.opacity = '0';
+            textEl.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                textEl.innerText = data.text;
+                btnEl.style.background = data.gradient;
+                btnEl.style.boxShadow = `0 10px 20px ${data.shadow}`;
+                
+                textEl.style.opacity = '1';
+                textEl.style.transform = 'translateY(0)';
+            }, 200);
+        }
+    </script>
 </body>
 </html>
